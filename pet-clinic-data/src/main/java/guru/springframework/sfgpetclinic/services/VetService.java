@@ -3,8 +3,6 @@
  */
 package guru.springframework.sfgpetclinic.services;
 
-import java.util.Set;
-
 import guru.springframework.sfgpetclinic.model.Vet;
 
 /**
@@ -12,6 +10,6 @@ import guru.springframework.sfgpetclinic.model.Vet;
  * @Since  25-Jan-2022
  *
  */
-public interface VetService {
+public interface VetService extends CurdService<Vet, Long> {
 	
 }
