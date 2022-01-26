@@ -12,13 +12,8 @@ import guru.springframework.sfgpetclinic.model.Owner;
  * @Since  25-Jan-2022
  *
  */
-public interface OwnerService {
+public interface OwnerService extends CurdService<Owner, Long> {
 
 	Owner findByLastName(String lastName);
 	
-	Owner findById(Long id);
-	
-	Owner save(Owner owner);
-	
-	Set<Owner> findAll();
 }

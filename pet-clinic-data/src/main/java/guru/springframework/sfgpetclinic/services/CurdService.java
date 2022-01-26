@@ -5,13 +5,16 @@ package guru.springframework.sfgpetclinic.services;
 
 import java.util.Set;
 
-import guru.springframework.sfgpetclinic.model.Vet;
-
 /**
  * @author vijayakumar
- * @Since  25-Jan-2022
+ * @Since  26-Jan-2022
  *
  */
-public interface VetService {
+public interface CurdService<T, ID> {
 	
+	T findById(ID id);
+	
+	Set<T> findAll();
+	
+	T save(T object);
 }
