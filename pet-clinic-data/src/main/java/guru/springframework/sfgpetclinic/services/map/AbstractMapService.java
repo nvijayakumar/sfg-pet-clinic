@@ -16,7 +16,7 @@ import guru.springframework.sfgpetclinic.services.CurdService;
  * @Since  26-Jan-2022
  *
  */
-public abstract class AbstractMapService<T, ID> implements CurdService<T, ID>{
+public abstract class AbstractMapService<T, ID> implements CurdService<T, ID> {
 
 	Map<ID, T> map = new HashMap<ID, T>();
 	
