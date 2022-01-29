@@ -3,12 +3,14 @@
  */
 package guru.springframework.sfgpetclinic.services.map;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
-import guru.springframework.sfgpetclinic.services.CurdService;
+import guru.springframework.sfgpetclinic.model.BaseEntity;
 
 /**
  * @author vijayakumar
@@ -16,23 +18,27 @@ import guru.springframework.sfgpetclinic.services.CurdService;
  * @Since  26-Jan-2022
  *
  */
-public abstract class AbstractMapService<T, ID> implements CurdService<T, ID> {
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
 
-	Map<ID, T> map = new HashMap<ID, T>();
+	Map<Long, T> map = new HashMap<Long, T>();
 	
-	@Override
 	public T findById(ID id) {
 		return map.get(id);
 	}
 
-	@Override
 	public Set<T> findAll() {
 		return new HashSet<T>(map.values());
 	}
 
-	public T save(ID id, T object) {
-		map.put(id, object);
-		return object;
+	public T save(T o) {
+		//Optional.ofNullable(o).ifPresentOrElse(e -> e.setId(getNextId()), () -> new RuntimeException("Entity is null."));
+		Optional.ofNullable(o).orElseThrow(() -> new RuntimeException("Entity is null."));
+		
+		if (o.getId() == null) 
+			o.setId(getNextId());
+		
+		map.put(o.getId(), o);
+		return o;
 	}
 
 	public void deleteById(ID id) {
@@ -41,5 +47,9 @@ public abstract class AbstractMapService<T, ID> implements CurdService<T, ID> {
 	
 	public void delete(T object) {
 		map.entrySet().removeIf(e -> e.getValue().equals(object));
+	}
+	
+	private Long getNextId() {
+		return map.isEmpty() ? 1L : Collections.max(map.keySet())+1L;
 	}
 }

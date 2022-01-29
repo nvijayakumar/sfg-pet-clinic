@@ -16,10 +16,4 @@ import guru.springframework.sfgpetclinic.services.PetService;
 @Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
-	@Override
-	public Pet save(Pet pet) {
-		super.save(pet.getId(), pet);
-		return pet;
-	}
-
 }
