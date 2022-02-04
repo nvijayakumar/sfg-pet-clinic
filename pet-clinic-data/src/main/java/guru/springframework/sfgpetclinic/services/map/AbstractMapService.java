@@ -14,7 +14,6 @@ import guru.springframework.sfgpetclinic.model.BaseEntity;
 
 /**
  * @author vijayakumar
- * @param <T>
  * @Since  26-Jan-2022
  *
  */
