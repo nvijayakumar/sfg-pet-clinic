@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import guru.springframework.sfgpetclinic.model.BaseEntity;
+import guru.springframework.sfgpetclinic.model.Owner;
 
 /**
  * @author vijayakumar
@@ -30,7 +31,7 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 	}
 
 	public T save(T o) {
-		//Optional.ofNullable(o).ifPresentOrElse(e -> e.setId(getNextId()), () -> new RuntimeException("Entity is null."));
+//		Optional.ofNullable(o).filter(o -> o.getId() == null);
 		Optional.ofNullable(o).orElseThrow(() -> new RuntimeException("Entity is null."));
 		
 		if (o.getId() == null) 
@@ -51,4 +52,5 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 	private Long getNextId() {
 		return map.isEmpty() ? 1L : Collections.max(map.keySet())+1L;
 	}
+	
 }
