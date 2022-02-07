@@ -14,7 +14,6 @@ import guru.springframework.sfgpetclinic.services.VetService;
  * @Since  26-Jan-2022
  *
  */
-@RequestMapping("/vets")
 @Controller
 public class VetsController {
 
@@ -24,7 +23,7 @@ public class VetsController {
 		this.vetService = vetService;
 	}
 
-	@RequestMapping({"", "/index", "index.html"})
+	@RequestMapping({"/vet", "/vet/index", "/vet/index.html", "/vets.html"})
 	public String vetsList(Model model) {
 		model.addAttribute("vets", vetService.findAll());
 		return "vets/index";
