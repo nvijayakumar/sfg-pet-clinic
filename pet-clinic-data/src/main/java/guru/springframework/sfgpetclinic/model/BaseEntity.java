@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
+ * This class is marked with @MappedSuperClass, so no entity
+ * will be exist for this class. But the property of this class
+ * will be exist in all its child class entity.
+ * 
  * @author vijayakumar
  * @Since  25-Jan-2022
  *
