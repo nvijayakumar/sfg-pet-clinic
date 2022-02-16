@@ -4,7 +4,7 @@
 package guru.springframework.sfgpetclinic.services.jpa;
 
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.repositories.OwnerRepository;
@@ -15,7 +15,7 @@ import guru.springframework.sfgpetclinic.services.OwnerService;
  * @Since  16-Feb-2022
  *
  */
-@Component
+@Service
 @Profile("jpa")
 public class OwnerServiceJpa extends AbstractJpaService<Owner, OwnerRepository> implements OwnerService {
 
