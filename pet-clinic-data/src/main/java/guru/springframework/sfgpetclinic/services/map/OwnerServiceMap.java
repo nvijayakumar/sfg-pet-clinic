@@ -17,7 +17,7 @@ import guru.springframework.sfgpetclinic.services.PetTypeService;
  *
  */
 @Service
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
+public class OwnerServiceMap extends AbstractMapService<Owner> implements OwnerService {
 	
 	private final PetTypeService petTypeService;
 	private final PetService petService;

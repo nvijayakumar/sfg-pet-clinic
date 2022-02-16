@@ -18,11 +18,11 @@ import guru.springframework.sfgpetclinic.model.Owner;
  * @Since  26-Jan-2022
  *
  */
-public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
+public abstract class AbstractMapService<T extends BaseEntity> {
 
-	Map<Long, T> map = new HashMap<Long, T>();
+	private final Map<Long, T> map = new HashMap<Long, T>();
 	
-	public T findById(ID id) {
+	public T findById(Long id) {
 		return map.get(id);
 	}
 
@@ -41,12 +41,12 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 		return o;
 	}
 
-	public void deleteById(ID id) {
+	public void deleteById(Long id) {
 		map.remove(id);
 	}
 	
 	public void delete(T object) {
-		map.entrySet().removeIf(e -> e.getValue().equals(object));
+		map.entrySet().removeIf(entry -> entry.getValue().equals(object));
 	}
 	
 	private Long getNextId() {

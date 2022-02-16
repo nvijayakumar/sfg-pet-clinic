@@ -14,6 +14,6 @@ import guru.springframework.sfgpetclinic.services.SpecialityService;
  *
  */
 @Service
-public class SpecialityServiceMap extends AbstractMapService<Speciality, Long> implements SpecialityService {
+public class SpecialityServiceMap extends AbstractMapService<Speciality> implements SpecialityService {
 
 }
