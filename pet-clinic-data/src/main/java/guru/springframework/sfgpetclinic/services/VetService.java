@@ -10,6 +10,6 @@ import guru.springframework.sfgpetclinic.model.Vet;
  * @Since  25-Jan-2022
  *
  */
-public interface VetService extends CurdService<Vet, Long> {
+public interface VetService extends CurdService<Vet> {
 	
 }

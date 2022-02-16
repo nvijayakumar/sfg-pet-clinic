@@ -5,14 +5,16 @@ package guru.springframework.sfgpetclinic.services;
 
 import java.util.Set;
 
+import guru.springframework.sfgpetclinic.model.BaseEntity;
+
 /**
  * @author vijayakumar
  * @Since  26-Jan-2022
  *
  */
-public interface CurdService<T, ID> {
+public interface CurdService<T extends BaseEntity> {
 	
-	T findById(ID id);
+	T findById(Long id);
 	
 	Set<T> findAll();
 	

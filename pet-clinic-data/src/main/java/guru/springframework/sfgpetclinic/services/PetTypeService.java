@@ -10,6 +10,6 @@ import guru.springframework.sfgpetclinic.model.PetType;
  * @Since  04-Feb-2022
  *
  */
-public interface PetTypeService extends CurdService<PetType, Long> {
+public interface PetTypeService extends CurdService<PetType> {
 
 }
