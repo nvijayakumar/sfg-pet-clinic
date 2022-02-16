@@ -45,10 +45,12 @@ public abstract class AbstractMapService<T extends BaseEntity> implements CurdSe
 		return o;
 	}
 
+	@Override
 	public void deleteById(Long id) {
 		map.remove(id);
 	}
 	
+	@Override
 	public void delete(T object) {
 		map.entrySet().removeIf(entry -> entry.getValue().equals(object));
 	}

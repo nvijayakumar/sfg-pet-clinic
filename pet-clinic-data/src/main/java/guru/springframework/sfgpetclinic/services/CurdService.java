@@ -19,4 +19,8 @@ public interface CurdService<T extends BaseEntity> {
 	Set<T> findAll();
 	
 	T save(T object);
+	
+	void delete(T object);
+	
+	void deleteById(Long id);
 }
