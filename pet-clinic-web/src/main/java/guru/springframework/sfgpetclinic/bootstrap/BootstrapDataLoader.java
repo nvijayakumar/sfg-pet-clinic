@@ -5,6 +5,7 @@ package guru.springframework.sfgpetclinic.bootstrap;
 
 import java.time.LocalDate;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +14,12 @@ import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.model.Speciality;
 import guru.springframework.sfgpetclinic.model.Vet;
+import guru.springframework.sfgpetclinic.model.Visit;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
 import guru.springframework.sfgpetclinic.services.SpecialityService;
 import guru.springframework.sfgpetclinic.services.VetService;
+import guru.springframework.sfgpetclinic.services.VisitService;
 
 /**
  * @author vijayakumar
@@ -30,13 +33,17 @@ public class BootstrapDataLoader implements CommandLineRunner {
 	private final VetService vetService;
 	private final PetTypeService petTypeService;
 	private final SpecialityService specialityService;
+	private final VisitService visitService;
 	
+	//Autowired is not required for constructor injection from Spring 5
+	@Autowired
 	public BootstrapDataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
-			SpecialityService specialityService) {
+			SpecialityService specialityService, VisitService visitService) {
 		this.ownerService = ownerService;
 		this.vetService = vetService;
 		this.petTypeService = petTypeService;
 		this.specialityService = specialityService;
+		this.visitService = visitService;
 	}
 
 	@Override
@@ -106,6 +113,15 @@ public class BootstrapDataLoader implements CommandLineRunner {
 		ownerService.save(o2);
 		
 		System.out.println("Loaded Owners....");
+		
+		Visit catVisit = new Visit();
+		catVisit.setPet(fionaPet);
+		catVisit.setLocalDate(LocalDate.now());
+		catVisit.setDescription("Sneezy cat");
+		fionaPet.getVisits().add(catVisit);
+		
+		visitService.save(catVisit);
+		System.out.println("Loaded Visit....");
 		
 		Vet vet1 = new Vet();
 		vet1.setFirstName("Sam");
