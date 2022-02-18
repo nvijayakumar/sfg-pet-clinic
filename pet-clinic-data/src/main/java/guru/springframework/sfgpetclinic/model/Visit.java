@@ -4,6 +4,7 @@
 package guru.springframework.sfgpetclinic.model;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,11 +12,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * @author vijayakumar
  * @Since  04-Feb-2022
  *
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "visits")
 public class Visit extends BaseEntity {
@@ -29,24 +39,5 @@ public class Visit extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
-	
-	public LocalDate getLocalDate() {
-		return localDate;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public Pet getPet() {
-		return pet;
-	}
-	public void setLocalDate(LocalDate localDate) {
-		this.localDate = localDate;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public void setPet(Pet pet) {
-		this.pet = pet;
-	}
 	
 }

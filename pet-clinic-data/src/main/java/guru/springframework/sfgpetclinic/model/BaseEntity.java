@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * This class is marked with @MappedSuperClass, so no entity
  * will be exist for this class. But the property of this class
@@ -19,6 +22,8 @@ import javax.persistence.MappedSuperclass;
  * @Since  25-Jan-2022
  *
  */
+@Getter
+@Setter
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 
@@ -26,12 +31,4 @@ public class BaseEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
 }
