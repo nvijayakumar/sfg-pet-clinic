@@ -11,7 +11,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import guru.springframework.sfgpetclinic.model.BaseEntity;
-import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.services.CurdService;
 
 /**
