@@ -3,7 +3,13 @@
  */
 package guru.springframework.sfgpetclinic.controllers;
 
+import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.isNotNull;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -69,6 +75,17 @@ class OwnersControllerTest {
 			.andExpect(view().name("notimplementedyet"));
 		
 		verifyNoInteractions(ownerService);
+	}
+	
+	@Test
+	void displayOwners() throws Exception {
+		when(ownerService.findById(anyLong())).thenReturn(Owner.builder().id(1l).build());
+		
+		mockMvc.perform(get("/owners/123")).andExpect(status().isOk())
+			.andExpect(view().name("/owners/ownerDetails"))
+			.andExpect(model().attribute("owner", hasProperty("id", is(1L))));
+		
+		verify(ownerService, times(1)).findById(anyLong());
 	}
 
 }
