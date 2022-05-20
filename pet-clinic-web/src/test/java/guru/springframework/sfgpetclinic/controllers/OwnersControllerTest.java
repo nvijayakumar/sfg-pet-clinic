@@ -71,13 +71,13 @@ class OwnersControllerTest {
 	 * .andExpect(view().name("owners/index")); }
 	 */
 
-	@Test
-	void testFindOwner() throws Exception {
-		mockMvc.perform(get("/owners/find")).andExpect(status().isOk())
-			.andExpect(view().name("notimplementedyet"));
-		
-		verifyNoInteractions(ownerService);
-	}
+	/*
+	 * @Test void testFindOwner() throws Exception {
+	 * mockMvc.perform(get("/owners/find")).andExpect(status().isOk())
+	 * .andExpect(view().name("notimplementedyet"));
+	 * 
+	 * verifyNoInteractions(ownerService); }
+	 */
 	
 	@Test
 	void displayOwners() throws Exception {
