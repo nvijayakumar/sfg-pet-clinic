@@ -3,6 +3,8 @@
  */
 package guru.springframework.sfgpetclinic.services.jpa;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,11 @@ public class OwnerServiceJpa extends AbstractJpaService<Owner, OwnerRepository> 
 	@Override
 	public Owner findByLastName(String lastName) {
 		return repository.findByLastName(lastName);
+	}
+
+	@Override
+	public List<Owner> findByLastNameLike(String lastName) {
+		return repository.findByLastNameLike(lastName);
 	}
 
 }

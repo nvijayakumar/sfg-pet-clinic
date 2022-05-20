@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.isNotNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -17,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -59,15 +61,15 @@ class OwnersControllerTest {
 		mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 	}
 
-	@Test
-	void testOwnersList() throws Exception {
-		
-		when(ownerService.findAll()).thenReturn(owners);
-		
-		mockMvc.perform(get("/owners/index")).andExpect(status().isOk())
-			.andExpect(model().attribute("owners", hasSize(2)))
-			.andExpect(view().name("owners/index"));
-	}
+	/*
+	 * @Test void testOwnersList() throws Exception {
+	 * 
+	 * when(ownerService.findAll()).thenReturn(owners);
+	 * 
+	 * mockMvc.perform(get("/owners/index")).andExpect(status().isOk())
+	 * .andExpect(model().attribute("owners", hasSize(2)))
+	 * .andExpect(view().name("owners/index")); }
+	 */
 
 	@Test
 	void testFindOwner() throws Exception {
@@ -86,6 +88,17 @@ class OwnersControllerTest {
 			.andExpect(model().attribute("owner", hasProperty("id", is(1L))));
 		
 		verify(ownerService, times(1)).findById(anyLong());
+	}
+	
+	@Test
+	void processFindFormReturnMany() throws Exception {
+		when(ownerService.findByLastNameLike(anyString()))
+        	.thenReturn(Arrays.asList(Owner.builder().id(1l).build(), Owner.builder().id(2l).build()));
+		
+		mockMvc.perform(get("/owners"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("/owners/ownersList"))
+				.andExpect(model().attribute("selections", hasSize(2)));
 	}
 
 }
