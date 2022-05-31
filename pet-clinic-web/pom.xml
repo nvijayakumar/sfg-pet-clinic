@@ -39,6 +39,10 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>guru.springframework</groupId>
 			<artifactId>pet-clinic-data</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
